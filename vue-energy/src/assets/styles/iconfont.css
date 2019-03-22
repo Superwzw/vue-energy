@@ -1,0 +1,33 @@
+@font-face {font-family: "iconfont";
+  src: url('./iconfont/iconfont.eot?t=1553219890112'); /* IE9 */
+  src: url('./iconfont/iconfont.eot?t=1553219890112#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAPYAAsAAAAACHwAAAOKAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDMgqECIM3ATYCJAMUCwwABCAFhG0HWxtWB8iemjxBxLJQCgAUAMRHLB7+W3u9b2CzmR9kBeiwjo+PqpBlVaFaCShVdTULRSjM/3m96iVZBMvz+p+0ooOXjDPRke2UR5Rk0dx2J7dCt6gH8/4DpBz2/987bSycx+e1Z7mMuWxP61MnSosmUJbtfbwTaEAljg1jF7TExwSaDRtQ1+pbe4FVmKsCcc+ticBmrEpDaeiFruJgES8hXJ8e0U8BvAh+Hz8gO1iSmpkbz2/UKVD5WZiQ98xp1LPD3uncYMfIOAQKcb/Sew8TxQ8xmjo9zCWg6SVpqnHR4z8nDOdIlAfSN+sPj5BkheiYxWPgEkoUPgsOIvgcjUh8jkdkPifIP8wzFTQM8ArAG0TenJkkVRobb23K/DiBu/ny5cCLF/3PnvU+f9736VXf2eeCJy+Xf3yzXRoenBQHZXG4t793oH9goK+vd3vchYdLIo4+Whl/+UlS5LHH9pGHK/hLjynq4ZPVwsVHCX1ZdiJznDyEo9oF4UmTFMYtNWzvrZHMTP+4kwFvHns89xi1Yyc9Zom81jEqmZyRHP8sv3bG1pbkfclzVbGyKF2hMv5sXnB40hJ5Gct/TPhLpuBFk35nvVQql6Z6R+qd8HXaWm1TeLQUSo/2HArFc4e4+FAw9euvHh7Qe+IS7iTEgVxg395m4SXV3C1NhoD97YET/rPUCp1Ase9+AfpLOmQecrkXJlKcmJ8uK5tfcX37mRx+pmL39qs5SdNFM2UJmbAFYGj+w+wJuBXIt/GIZRr29O5XL3Lh97WsidjS/6zwiF2f7kvZWNk90Usw2Y+VdWwomsK01aLUO1LFX52/Em1Suxp+Z3DGh2n0852jhD4jY5CMWIest4kv5EOoBo6h07sIzYGG4wOzTIwoo9h3EECYcgWSCa8hmzKFL+T3UC34Dp2pYKC5HvMvHNgON19jomijQqStxC3rAdV22HxY2o2a4xPNtCLg9KNpuUMkKz0zn2rAAJpTbLE2adm2rRLV1P2kHjyHPp9OgqbuQdlOd9l2sDgjQ616U7qs+4F3lQmJbEhBSLYi3GS6ANXrbOML3++GNA4fkdmAqQr3QyaLe3QiS7rMDvgGbaAT5lamWzbRZLPZVLxMZdL5EfXQjXxWXEcEq+d5IJktnWtANKhYBmqmdtWmL6/3v+MhaMzZNVLkKFGjM3rxeROOhSYfJSxZN7FErTyDNgrW+tGyRA0BAAAA') format('woff2'),
+  url('./iconfont/iconfont.woff?t=1553219890112') format('woff'),
+  url('./iconfont/iconfont.ttf?t=1553219890112') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('./iconfont/iconfont.svg?t=1553219890112#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.iconicon_user:before {
+  content: "\e60b";
+}
+
+.iconicon_score:before {
+  content: "\e60d";
+}
+
+.iconicon_date:before {
+  content: "\e611";
+}
+
+.iconicon_message:before {
+  content: "\e619";
+}
+
