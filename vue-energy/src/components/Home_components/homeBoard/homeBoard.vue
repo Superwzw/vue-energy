@@ -23,4 +23,6 @@
 	.homeBoard
 		overflow:hidden;
 		background-color: $bgColor;	
+		width:100%;
+		min-width:1200px;
 </style>
