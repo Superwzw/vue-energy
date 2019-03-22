@@ -1,6 +1,6 @@
 <template>
 	<div class="nav">
-		<h1 style="text-align: center">这是导航组件</h1>
+		<i-button type="primary">hi</i-button>
 	</div>
 </template>
 
@@ -12,7 +12,9 @@
 
 <style lang="stylus" scoped>
 	.nav
-		width:280px;
-		height:392px;
-		border:2px solid black;
+		width:320px;
+		height:397px;
+		// border:1px solid black;
+		float:right;
+		background-color:rgba(0,0,0,0.3);
 </style>

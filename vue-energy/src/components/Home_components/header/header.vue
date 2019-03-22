@@ -21,9 +21,9 @@
 </script>
 
 <style lang="stylus" scoped>
+	@import '~@/assets/styles/varibles'
 		header
-			position: fixed;
-			top:20px;
+			margin-top:20px;
 			height: 68px;
 			width: 100%;
 			// border: 1px solid black;

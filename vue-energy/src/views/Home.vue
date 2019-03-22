@@ -1,7 +1,7 @@
 <template>
-  <div class="home">
+  <div class="home"">
     <home-header></home-header>
-    <home-nav style="float: right;"></home-nav>
+    <home-nav></home-nav>
   </div>
 </template>
 
@@ -20,8 +20,4 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-	.home
-		overflow:hidden;
-	// home-nav
-	// 	float:right;
 </style>
