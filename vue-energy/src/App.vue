@@ -4,9 +4,11 @@
   </div>
 </template>
 
-<style>
-  html,body{
+<style lang="stylus" scoped>
+  html,body
     padding: 0;
     margin: 0;
-  }
+  // #app
+  // 	heigth:2000px;
+  // 	border:10px solid green;
 </style>
