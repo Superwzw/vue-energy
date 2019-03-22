@@ -1,17 +1,27 @@
 <template>
   <div class="home">
     <home-header></home-header>
+    <home-nav style="float: right;"></home-nav>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import homeHeader from '@/components/header/header.vue'
+import homeHeader from '@/components/Home_components/header/header.vue'
+import homeNav from '@/components/Home_components/homeNav/homeNav.vue'
 // import homeHeader from '@/components/HelloWorld.vue'
 export default {
   name: 'home',
   components: {
-    homeHeader
+    homeHeader,
+    homeNav,
   }
 }
 </script>
+
+<style lang="stylus" scoped>
+	.home
+		overflow:hidden;
+	// home-nav
+	// 	float:right;
+</style>
