@@ -1,12 +1,16 @@
 <template>
 	<div class="homeBoard">
 		<home-header></home-header>
-		<home-nav></home-nav>
+		<div class="board-wraper">
+			<homeSwiper></homeSwiper>
+			<home-nav></home-nav>
+		</div>
 	</div>
 </template>
 
 <script>
 	import homeHeader from '@/components/Home_components/header/header.vue'
+	import homeSwiper from '@/components/Home_components/homeSwiper/homeSwiper.vue'
 	import homeNav from '@/components/Home_components/homeNav/homeNav.vue'
 
 	export default {
@@ -14,6 +18,7 @@
 	  	components: {
     		homeHeader,
     		homeNav,
+    		homeSwiper,
   		}
 	}
 </script>
@@ -22,7 +27,9 @@
 @import '~@/assets/styles/varibles'
 	.homeBoard
 		overflow:hidden;
-		background-color: $bgColor;	
+		background-color: $btnColor;	
 		width:100%;
 		min-width:1200px;
+	.board-wraper
+		display:flex;
 </style>

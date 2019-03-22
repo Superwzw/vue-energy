@@ -37,12 +37,14 @@
 			align-items: center;
 			justify-content:space-between;
 			min-width:1200px;
-			background-color:rgba(247,247,247,0.03);
+			background-color:rgba(247,247,247,0.2);
 			.logo-img
 					height: 97px;
 					margin-right: 43px;
 					.logo-content
 						height:100%;
+					.logo-content:hover
+						transform:scale(1.1);
 			// .search
 			// 	// margin-left:300px;
 			// 	height:48px;
@@ -73,5 +75,9 @@
 				align-items:center;
 				.homeIcon
 					font-size:40px;
+				.homeIcon:hover
+					color:rgb(244,208,0);
+					transform: scale(1.1);
+				
 
 </style>

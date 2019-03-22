@@ -18,13 +18,15 @@
 		position:relative;
 		overflow:hidden;
 		height:250px;
+		background-color:$btnColor;
 		.footer-img
 			position:absolute;
-			top:0;
+			top:10px;
 			left:0;
 			right:0;
 			bottom:0;
-			background-color:$bgColor;
 			.footer-img-content
 				height:100%;
+			.footer-img-content:hover
+				transform:scale(1.1);
 </style>
