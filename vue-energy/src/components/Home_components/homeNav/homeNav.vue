@@ -1,6 +1,22 @@
 <template>
 	<div class="nav">
-		<i-button type="primary">hi</i-button>
+		<div class="appMenu">
+			<div class="iconfont homeIcon">&#xe60d;</div>
+			<h1>功能菜单</h1>
+		</div>
+		<div class="Recommend">
+		<div class="appRec">
+			<div class="iconfont homeIcon">&#xe60d;</div>
+			<h1>推荐阅读</h1>
+		</div>
+		<ul class="recList" style="list-style-type: none;">
+			<li class="recItem">1</li>
+			<li class="recItem">2</li>
+			<li class="recItem">3</li>
+			<li class="recItem">4</li>
+			<li class="recItem">5</li>
+		</ul>
+		</div>
 	</div>
 </template>
 
@@ -12,9 +28,27 @@
 
 <style lang="stylus" scoped>
 	.nav
-		width:320px;
+		width:297px;
 		height:397px;
-		// border:1px solid black;
 		float:right;
 		background-color:rgba(0,0,0,0.3);
+		padding:20px
+		.appMenu
+			display:flex;
+			height:20%;
+			align-items:center;
+		.Recommend
+			height:80%;
+			.appRec
+				display:flex;
+				align-items:center;
+				height:20%;
+			.recList
+				text-indent:4em;
+				height:80%;
+				.recItem
+					display:flex;
+					align-items:center;
+					height:20%;
+			
 </style>

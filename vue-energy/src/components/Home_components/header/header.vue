@@ -26,12 +26,10 @@
 			margin-top:20px;
 			height: 68px;
 			width: 100%;
-			// border: 1px solid black;
 			display: flex;
 			align-items: center;
 			min-width:1200px;
 			background-color:rgba(147,147,147,0.1);
-			// opacity: 0;
 			.logo
 				height: 36px;
 				width: 135px;
@@ -39,33 +37,34 @@
 				left: 80px;
 				background: url(https://vm.gtimg.cn/tencentvideo/vstyle/web/v6/style/img/common/sprite_head_logo.svg) 0 -36px no-repeat;
 			.search
-				margin:0 auto;
+				margin:auto;
 				height:48px;
 				width:460px;
 				display:flex;
 				border-radius: 25px;
-				border: 1px solid grey;
 				.searchInput
 					border:none;
 					border-radius: 25px 0 0 25px;
 					outline:none;
 					flex-grow:1;
 					padding-left: 20px;
+					font-size:20px;
 				.searchButton
 					border-radius: 0 25px 25px 0;
+					font-size:15px;
+					color:white;
+					padding:0 15px;
+					background-color:$bgColor;
 					border:none;
 					outline:none;
 			.optionList 
 				height: 31px;
-				width: 184px;
-				overflow: hidden;
-				position: absolute;
-				right: 20px;
-				// border: 1px solid black;
+				width: 207px;
+				float:right;
+				margin-right: 33px;
 				display:flex;
 				justify-content:space-around;
 				align-items:center;
-				// flex-grow:1;
 				.homeIcon
 					font-size:30px;
 
