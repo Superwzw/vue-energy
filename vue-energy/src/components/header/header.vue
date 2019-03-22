@@ -30,6 +30,7 @@
 			display: flex;
 			align-items: center;
 			min-width:1200px;
+			background-color:rgba(147,147,147,0.1);
 			// opacity: 0;
 			.logo
 				height: 36px;
