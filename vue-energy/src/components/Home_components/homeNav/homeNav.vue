@@ -1,12 +1,12 @@
 <template>
 	<div class="nav">
 		<div class="appMenu">
-			<div class="iconfont homeIcon">&#xe60d;</div>
+			<div class="iconfont homeIcon" style="font-size: 30px;">&#xe719;</div>
 			<h1>功能菜单</h1>
 		</div>
 		<div class="Recommend">
 		<div class="appRec">
-			<div class="iconfont homeIcon">&#xe60d;</div>
+			<div class="iconfont homeIcon" style="font-size: 25px;">&#xe611;</div>
 			<h1>推荐阅读</h1>
 		</div>
 		<ul class="recList" style="list-style-type: none;">
@@ -34,6 +34,8 @@
 		background-color:rgba(27,27,27,0.4);
 		padding:20px;
 		color:white;
+		.homeIcon
+			margin-right:10px;
 		.appMenu
 			display:flex;
 			height:20%;

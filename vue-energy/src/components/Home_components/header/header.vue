@@ -1,16 +1,23 @@
 <template>
 		<header>
-				<div class="logo"></div>
-				<div class="search">
-						<input type="text" class="searchInput" placeholder="搜索">
-						<button class="searchButton">全网搜</button>
+			<div class="optionList">
+				<div class="iconfont homeIcon">&#xe60c;</div>
+				<div class="iconfont homeIcon">&#xe603;</div>
+				<div class="iconfont homeIcon">&#xe652;</div>
+				<div class="iconfont homeIcon">&#xe613;</div>
+			</div>
+			<div class="logo">
+				<div class="logo-img">
+					<img class="logo-content" src="@/assets/logo.png">
 				</div>
-				<div class="optionList">
-					<div class="iconfont homeIcon">&#xe60d;</div>
-					<div class="iconfont homeIcon">&#xe611;</div>
-					<div class="iconfont homeIcon">&#xe619;</div>
-					<div class="iconfont homeIcon">&#xe60b;</div>
-				</div>
+			</div>
+<!-- 				<div class="search">
+						<input type="text" class="searchInput" placeholder="                  请输入内容...">
+						<button class="searchButton">
+							<div class="iconfont homeIcon" style="display:inline-block;">&#xe688;</div>
+							搜索
+						</button>
+				</div> -->
 		</header>
 </template>
 
@@ -24,48 +31,47 @@
 	@import '~@/assets/styles/varibles'
 		header
 			margin-top:20px;
-			height: 68px;
+			height: 97px;
 			width: 100%;
 			display: flex;
 			align-items: center;
+			justify-content:space-between;
 			min-width:1200px;
-			background-color:rgba(247,247,247,0.3);
-			.logo
-				height: 36px;
-				width: 135px;
-				position: absolute;
-				left: 80px;
-				background: url(https://vm.gtimg.cn/tencentvideo/vstyle/web/v6/style/img/common/sprite_head_logo.svg) 0 -36px no-repeat;
-			.search
-				margin:auto;
-				height:48px;
-				width:460px;
-				display:flex;
-				border-radius: 25px;
-				.searchInput
-					border:none;
-					border-radius: 25px 0 0 25px;
-					outline:none;
-					flex-grow:1;
-					padding-left: 20px;
-					font-size:18px;
-				.searchButton
-					border-radius: 0 25px 25px 0;
-					font-size:15px;
-					color:white;
-					padding:0 15px;
-					background-color:$bgColor;
-					border:none;
-					outline:none;
+			background-color:rgba(247,247,247,0.03);
+			.logo-img
+					height: 97px;
+					margin-right: 43px;
+					.logo-content
+						height:100%;
+			// .search
+			// 	// margin-left:300px;
+			// 	height:48px;
+			// 	width:460px;
+			// 	display:flex;
+			// 	border-radius: 25px;
+			// 	.searchInput
+			// 		border:none;
+			// 		border-radius: 25px 0 0 25px;
+			// 		outline:none;
+			// 		flex-grow:1;
+			// 		padding-left: 57px;
+			// 		font-size:18px;
+			// 	.searchButton
+			// 		border-radius: 0 25px 25px 0;
+			// 		font-size:15px;
+			// 		color:white;
+			// 		padding:0 15px;
+			// 		background-color:$btnColor;
+			// 		border:none;
+			// 		outline:none;
 			.optionList 
 				height: 31px;
-				width: 207px;
-				float:right;
-				margin-right: 33px;
+				width: 257px;
+				margin-left: 33px;
 				display:flex;
 				justify-content:space-around;
 				align-items:center;
 				.homeIcon
-					font-size:30px;
+					font-size:40px;
 
 </style>
