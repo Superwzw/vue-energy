@@ -31,8 +31,9 @@
 		width:297px;
 		height:397px;
 		float:right;
-		background-color:rgba(0,0,0,0.3);
-		padding:20px
+		background-color:rgba(27,27,27,0.4);
+		padding:20px;
+		color:white;
 		.appMenu
 			display:flex;
 			height:20%;

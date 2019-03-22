@@ -29,7 +29,7 @@
 			display: flex;
 			align-items: center;
 			min-width:1200px;
-			background-color:rgba(147,147,147,0.1);
+			background-color:rgba(247,247,247,0.3);
 			.logo
 				height: 36px;
 				width: 135px;
@@ -48,7 +48,7 @@
 					outline:none;
 					flex-grow:1;
 					padding-left: 20px;
-					font-size:20px;
+					font-size:18px;
 				.searchButton
 					border-radius: 0 25px 25px 0;
 					font-size:15px;
