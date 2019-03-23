@@ -30,6 +30,7 @@
 <style lang="stylus" scoped>
 	@import '~@/assets/styles/varibles'
 		header
+			// border:5px solid green;
 			margin-top:20px;
 			height: 97px;
 			width: 100%;

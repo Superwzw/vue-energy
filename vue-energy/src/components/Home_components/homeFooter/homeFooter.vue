@@ -17,8 +17,9 @@
 	.homeFooter
 		position:relative;
 		overflow:hidden;
-		height:250px;
-		background-color:$btnColor;
+		height:200px;
+		background-color:rgba(0,0,0,0);
+		border:5px solid purple;
 		.footer-img
 			position:absolute;
 			top:10px;

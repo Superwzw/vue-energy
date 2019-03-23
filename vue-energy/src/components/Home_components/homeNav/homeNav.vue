@@ -2,7 +2,7 @@
 	<div class="nav">
 		<div class="appMenu bigger">
 			<div class="iconfont homeIcon" style="font-size: 30px;">&#xe719;</div>
-			<h1>功能菜单</h1>
+			<h1 @click="clickMenu">功能菜单</h1>
 		</div>
 		<div class="Recommend">
 		<div class="appRec bigger">
@@ -23,17 +23,24 @@
 <script>
 	export default {
 		name: "homeNav",
+		methods:{
+			clickMenu: function () {
+				
+			},
+		},
 	}
 </script>
 
 <style lang="stylus" scoped>
 	.nav
-		width:297px;
-		height:397px;
 		float:right;
-		background-color:rgba(27,27,27,0.3);
+		width:20%;
+		height:397px;
+		background-color:rgba(27,27,27,0.1);
 		padding:25px;
+		// margin-left:15px;
 		color:white;
+		// border:5px solid yellow;
 		.homeIcon
 			margin-right:5px;
 		.appMenu
@@ -54,7 +61,7 @@
 					display:flex;
 					align-items:center;
 					height:20%;
-		.bigger:hover
+		.bigger:hover 
 			color:rgb(244,208,0);
 			transform: scale(1.1);
 </style>

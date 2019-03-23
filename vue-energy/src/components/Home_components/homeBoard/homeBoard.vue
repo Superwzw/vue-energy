@@ -1,10 +1,9 @@
 <template>
 	<div class="homeBoard">
 		<home-header></home-header>
-		<div class="board-wraper">
-			<homeSwiper></homeSwiper>
-			<home-nav></home-nav>
-		</div>
+		<home-nav></home-nav>
+		<homeSwiper></homeSwiper>	
+		<home-footer></home-footer>
 	</div>
 </template>
 
@@ -12,13 +11,15 @@
 	import homeHeader from '@/components/Home_components/header/header.vue'
 	import homeSwiper from '@/components/Home_components/homeSwiper/homeSwiper.vue'
 	import homeNav from '@/components/Home_components/homeNav/homeNav.vue'
+	import homeFooter from '@/components/Home_components/homeFooter/homeFooter.vue'
 
 	export default {
 		name: "homeBoard",
 	  	components: {
     		homeHeader,
-    		homeNav,
     		homeSwiper,
+    		homeNav,
+		    homeFooter,
   		}
 	}
 </script>
@@ -26,10 +27,10 @@
 <style lang="stylus" scoped>
 @import '~@/assets/styles/varibles'
 	.homeBoard
-		overflow:hidden;
-		background-color: $btnColor;	
+		// background-color: $bgColor;
+		background: url("~@/assets/0.jpg");
 		width:100%;
+		height:100%;
 		min-width:1200px;
-	.board-wraper
-		display:flex;
+		// border:5px solid red;
 </style>

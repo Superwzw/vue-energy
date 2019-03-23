@@ -3,7 +3,7 @@
     <!-- <home-header></home-header>
     <home-nav></home-nav> -->
     <home-board></home-board>
-    <home-footer style="flex-grow: 1;"></home-footer>
+    <!-- <home-footer></home-footer> -->
   </div>
 </template>
 
@@ -12,20 +12,19 @@
 // import homeHeader from '@/components/Home_components/header/header.vue'
 // import homeNav from '@/components/Home_components/homeNav/homeNav.vue'
 import homeBoard from '@/components/Home_components/homeBoard/homeBoard.vue'
-import homeFooter from '@/components/Home_components/homeFooter/homeFooter.vue'
+// import homeFooter from '@/components/Home_components/homeFooter/homeFooter.vue'
 export default {
   name: 'home',
   components: {
     homeBoard,
-    homeFooter,
   }
 }
 </script>
 
 <style lang="stylus" scoped>
 	.home
-		hight:15000px;
 		display:flex;
 		flex-direction:column;
+		height:100%;
 		// border:1px solid red;
 </style>
