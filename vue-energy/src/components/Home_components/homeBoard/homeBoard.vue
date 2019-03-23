@@ -3,7 +3,7 @@
 		<home-header></home-header>
 		<home-nav></home-nav>
 		<homeSwiper></homeSwiper>	
-		<home-footer></home-footer>
+		<!-- <home-footer></home-footer> -->
 	</div>
 </template>
 
@@ -11,7 +11,7 @@
 	import homeHeader from '@/components/Home_components/header/header.vue'
 	import homeSwiper from '@/components/Home_components/homeSwiper/homeSwiper.vue'
 	import homeNav from '@/components/Home_components/homeNav/homeNav.vue'
-	import homeFooter from '@/components/Home_components/homeFooter/homeFooter.vue'
+	// import homeFooter from '@/components/Home_components/homeFooter/homeFooter.vue'
 
 	export default {
 		name: "homeBoard",
@@ -19,7 +19,7 @@
     		homeHeader,
     		homeSwiper,
     		homeNav,
-		    homeFooter,
+		    // homeFooter,
   		}
 	}
 </script>

@@ -1,7 +1,7 @@
 <template>
 	<div class="homeFooter">
 		<div class="footer-img">
-			<img class="footer-img-content" src="@/assets/bg_footer.png"></img>
+			<!-- <img class="footer-img-content" src="@/assets/bg_footer.png"></img> -->
 		</div>
 	</div>
 </template>
@@ -19,7 +19,7 @@
 		overflow:hidden;
 		height:200px;
 		background-color:rgba(0,0,0,0);
-		border:5px solid purple;
+		// border:5px solid purple;
 		.footer-img
 			position:absolute;
 			top:10px;

@@ -53,7 +53,7 @@
 <style lang="stylus" scoped>
 @import '~@/assets/styles/varibles'
 	.place
-		height:397px;
+		height:460px;
 		width:80%;
 		padding:5px;
 		display:flex;
@@ -61,7 +61,7 @@
 			flex-grow:1;
 			background-color: rgba(0,0,0,0.4);
 	.homeSwiper
-		height:397px;
+		height:460px;
 		width:80%;
 		padding:5px;
 		position:relative;
@@ -74,7 +74,7 @@
 			justify-content:space-around;
 		.slideCard
 			width: 23%;
-			height:90%;
+			height:92%;
 			background-color: rgba(0,0,0,0.4);
 		.slideCard:hover
 			transform:scale(1.1);
