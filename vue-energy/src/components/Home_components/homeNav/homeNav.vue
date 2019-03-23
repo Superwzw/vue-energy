@@ -35,8 +35,8 @@
 	.nav
 		float:right;
 		width:20%;
-		height:460px;
-		background-color:rgba(27,27,27,0.1);
+		height:480px;
+		background-color:rgba(13,12,12,0.7);
 		padding:25px;
 		// margin-left:15px;
 		color:white;

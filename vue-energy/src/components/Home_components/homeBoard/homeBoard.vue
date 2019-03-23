@@ -28,9 +28,11 @@
 @import '~@/assets/styles/varibles'
 	.homeBoard
 		// background-color: $bgColor;
-		background: url("~@/assets/0.jpg");
+		background: url("~@/assets/2.jpg");
+		background-size:cover;
 		width:100%;
 		height:100%;
+		min-height:700px;
 		min-width:1200px;
 		// border:5px solid red;
 </style>

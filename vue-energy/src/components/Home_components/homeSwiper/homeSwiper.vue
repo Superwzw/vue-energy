@@ -53,15 +53,16 @@
 <style lang="stylus" scoped>
 @import '~@/assets/styles/varibles'
 	.place
-		height:460px;
+		height:500px;
 		width:80%;
 		padding:5px;
 		display:flex;
 		.fnCard
 			flex-grow:1;
 			background-color: rgba(0,0,0,0.4);
+			// border:none;
 	.homeSwiper
-		height:460px;
+		height:500px;
 		width:80%;
 		padding:5px;
 		position:relative;
