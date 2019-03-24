@@ -1,8 +1,8 @@
 <template>
 	<div class="nav">
-		<div class="appMenu bigger">
+		<div class="appMenu bigger" @click="clickMenu">
 			<div class="iconfont homeIcon" style="font-size: 30px;">&#xe719;</div>
-			<h1 @click="clickMenu">功能菜单</h1>
+			<h1>功能菜单</h1>
 		</div>
 		<div class="Recommend">
 		<div class="appRec bigger">
@@ -25,7 +25,7 @@
 		name: "homeNav",
 		methods:{
 			clickMenu: function () {
-				
+				this.$store.dispatch('changeShow', true);
 			},
 		},
 	}

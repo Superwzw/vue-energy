@@ -1,9 +1,9 @@
 <template>
 	<div>
-		<div class="place" v-if="!show">
+		<div class="place" v-if="!this.$store.state.show">
 			<Card class="fnCard"></Card>
 		</div>
-		<div class="homeSwiper" v-if="show">
+		<div class="homeSwiper" v-if="this.$store.state.show">
 			<div class="card-warper">
 				<Card class="slideCard" @click.native="clickCard">
 					<div style="text-align:center">
@@ -39,12 +39,12 @@
 		name: "homeSwiper",
 		data: function(){
 			return {
-				show:true,
+				// show:true,
 			}
 		},
 		methods:{
 			clickCard: function(){
-				this.show = false;
+				this.$store.dispatch('changeShow', false);
 			}
 		},
 	}
