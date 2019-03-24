@@ -29,12 +29,12 @@
 								<div style="display: flex;margin-top: 20px;">
 							        <h2 style="margin-right: 10px;">密码:</h2>
 							        <Input type="password"size="large" prefix="ios-key" placeholder="请输入支付密码" clearable style="width: 400px;" />
-							    </div>
-								<div style="display: flex;margin-top:50px;">
-							        <Button type="primary">确认出售</Button>
-							    </div>							
+							    </div>						
 			          		</div>
 						</Card>
+						<div style="margin-right:140px;float: right;">
+					        <Button size="large"type="primary">确认出售</Button>
+					    </div>	
 					</div>
 				</div>
 			</Card>
@@ -95,31 +95,40 @@
 		display:flex;
 		.fnCard
 			flex-grow:1;
-			background-color: rgba(0,0,0,0.4);
-			// border:none;
+			background-color: rgba(0,0,0,0.6);
+			border:none;
 			.sell-module
 				height:460px;
 				width:100%;
 				margin:2px auto;
 				display:flex;
 				align-items:center;
-				// border:5px solid red;
+				// background-color: rgba(255,255,255,0.1);
+				// border:1px solid grey;
 				.user-info
 					height:90%;
 					width:30%;
 					// border:5px solid green;
+					.sellc
+						height:100%;
+						background-color: rgba(0,0,0,0);
+						display:flex;
+						align-items:center;
+						justify-content:center;
+						color:white;
+						border:none;	
 				.sell-detail
 					height:90%;
 					flex-grow:1;
 					// border:5px solid blue;
-				.sellc
-					height:100%;
-					background-color: rgba(0,0,0,0.4);
-					display:flex;
-					align-items:center;
-					justify-content:center;
-					color:white;
-					// border:none;	
+					.sellc
+						height:80%;
+						background-color: rgba(0,0,0,0);
+						display:flex;
+						align-items:center;
+						justify-content:center;
+						color:white;
+						border:none;
 	.homeSwiper
 		height:500px;
 		width:80%;

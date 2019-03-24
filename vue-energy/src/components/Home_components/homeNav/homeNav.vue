@@ -2,12 +2,12 @@
 	<div class="nav">
 		<div class="appMenu bigger" @click="clickMenu">
 			<div class="iconfont homeIcon" style="font-size: 30px;">&#xe719;</div>
-			<h1>功能菜单</h1>
+			<h1 style="font-size: 30px;">功能菜单</h1>
 		</div>
 		<div class="Recommend">
 		<div class="appRec bigger">
 			<div class="iconfont homeIcon" style="font-size: 25px;">&#xe611;</div>
-			<h1>推荐阅读</h1>
+			<h1 style="font-size: 30px;">推荐阅读</h1>
 		</div>
 		<ul class="recList" style="list-style-type: none;">
 			<li class="recItem bigger">1</li>
@@ -35,8 +35,8 @@
 	.nav
 		float:right;
 		width:20%;
-		height:480px;
-		background-color:rgba(13,12,12,0.7);
+		height:490px;
+		background-color:rgba(0,0,0,0.2);
 		padding:25px;
 		// margin-left:15px;
 		color:white;
@@ -63,5 +63,6 @@
 					height:20%;
 		.bigger:hover 
 			color:rgb(244,208,0);
+			// color:black;
 			transform: scale(1.1);
 </style>
