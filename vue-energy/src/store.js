@@ -6,15 +6,17 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
   	show: true,
+    num:0,
   },
   mutations: {
-  	changeShow(ctx,type) {
-  		this.state.show = type;
+  	changeShow(ctx,arg) {
+  		this.state.show = arg.type;
+      this.state.num = arg.num;
   	}
   },
   actions: {
-  	changeShow(ctx,type) {
-  		ctx.commit('changeShow', type);
+  	changeShow(ctx,arg) {
+  		ctx.commit('changeShow', arg);
   	}
   }
 })

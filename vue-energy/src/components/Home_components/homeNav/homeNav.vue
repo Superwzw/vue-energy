@@ -25,7 +25,11 @@
 		name: "homeNav",
 		methods:{
 			clickMenu: function () {
-				this.$store.dispatch('changeShow', true);
+				var arg = {
+					type: true,
+					num:0,
+				}
+				this.$store.dispatch('changeShow', arg);
 			},
 		},
 	}

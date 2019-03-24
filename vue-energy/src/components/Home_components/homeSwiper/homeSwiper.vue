@@ -2,64 +2,31 @@
 	<div>
 		<div class="place" v-if="!this.$store.state.show">
 			<Card class="fnCard">
-				<div class="sell-module">
-					<div class="user-info">
-						<Card class="info-content sellc">
-							<div style="text-align: center;">
-					            <img src="@/assets/logo1.png">
-				            	<h1>用户名</h1>
-				            	<h2 style="margin-top: 20px;">ID:15352330</h2>
-				            	<h4 style="color: red;margin-top: 30px;">
-				            		*请务必核对好您的基本信息，如有错误，请稍后再试
-				            	</h4>
-			          		</div>
-						</Card>
-					</div>
-					<div class="sell-detail">
-						<Card class="sell-content sellc">
-							<div style="text-align: center;">
-								<div style="display: flex;">
-							        <h2 style="margin-right: 10px;">电量:</h2>
-							        <Input size="large" prefix="ios-basket" placeholder="请输入电量,如： 100" clearable style="width: 400px;" />
-							    </div>
-								<div style="display: flex;margin-top: 20px;">
-							        <h2 style="margin-right: 10px;">单价:</h2>
-							        <Input size="large" prefix="logo-yen" placeholder="请输入单价,如：  0.5" clearable style="width: 400px;" />
-							    </div>
-								<div style="display: flex;margin-top: 20px;">
-							        <h2 style="margin-right: 10px;">密码:</h2>
-							        <Input type="password"size="large" prefix="ios-key" placeholder="请输入支付密码" clearable style="width: 400px;" />
-							    </div>						
-			          		</div>
-						</Card>
-						<div style="margin-right:140px;float: right;">
-					        <Button size="large"type="primary">确认出售</Button>
-					    </div>	
-					</div>
-				</div>
+				<sell-module v-if="this.$store.state.num === 1"></sell-module>
+				<recharge-module v-if="this.$store.state.num === 3"></recharge-module>
 			</Card>
 		</div>
 		<div class="homeSwiper" v-if="this.$store.state.show">
 			<div class="card-warper">
-				<Card class="slideCard" @click.native="clickCard">
+				<Card class="slideCard" @click.native="clickCard(1)">
 					<div style="text-align:center">
 			            <img src="@/assets/logo1.png">
 			            <h1 style="color: white;">能源出售</h1>
 			        </div>
 				</Card>
-				<Card class="slideCard" @click.native="clickCard">
+				<Card class="slideCard" @click.native="clickCard(2)">
 					<div style="text-align:center">
 			            <img src="@/assets/logo1.png">
 			            <h1 style="color: white;">能源购买</h1>
 			        </div>
 				</Card>
-				<Card class="slideCard" @click.native="clickCard">
+				<Card class="slideCard" @click.native="clickCard(3)">
 					<div style="text-align:center">
 			            <img src="@/assets/logo1.png">
 			            <h1 style="color: white;">余额充值</h1>
 			        </div>
 				</Card>
-				<Card class="slideCard" @click.native="clickCard">
+				<Card class="slideCard" @click.native="clickCard(4)">
 					<div style="text-align:center">
 			            <img src="@/assets/logo1.png">
 			            <h1 style="color: white;">记录查询</h1>
@@ -71,16 +38,26 @@
 </template>
 
 <script>
+	import sellModule from '@/components/Home_components/homeSwiper/sellModule.vue'
+	import rechargeModule from '@/components/Home_components/homeSwiper/rechargeModule.vue'
 	export default {
 		name: "homeSwiper",
+		components:{
+			sellModule,
+			rechargeModule,
+		},
 		data: function(){
 			return {
 				// show:true,
 			}
 		},
 		methods:{
-			clickCard: function(){
-				this.$store.dispatch('changeShow', false);
+			clickCard: function(num){
+				var arg = {
+					num,
+					type:false,
+				}
+				this.$store.dispatch('changeShow', arg);
 			}
 		},
 	}
@@ -97,38 +74,6 @@
 			flex-grow:1;
 			background-color: rgba(0,0,0,0.6);
 			border:none;
-			.sell-module
-				height:460px;
-				width:100%;
-				margin:2px auto;
-				display:flex;
-				align-items:center;
-				// background-color: rgba(255,255,255,0.1);
-				// border:1px solid grey;
-				.user-info
-					height:90%;
-					width:30%;
-					// border:5px solid green;
-					.sellc
-						height:100%;
-						background-color: rgba(0,0,0,0);
-						display:flex;
-						align-items:center;
-						justify-content:center;
-						color:white;
-						border:none;	
-				.sell-detail
-					height:90%;
-					flex-grow:1;
-					// border:5px solid blue;
-					.sellc
-						height:80%;
-						background-color: rgba(0,0,0,0);
-						display:flex;
-						align-items:center;
-						justify-content:center;
-						color:white;
-						border:none;
 	.homeSwiper
 		height:500px;
 		width:80%;
