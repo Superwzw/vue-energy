@@ -1,10 +1,27 @@
 <template>
     <div class="buyModule">
+        <div class="search-wraper">
+            <div style="margin-right:40px;">
+              <Button size="large"type="primary" icon="ios-arrow-back" style="font-size: 15px;" @click="backHome">返回</Button>
+            </div>
+            <Row class="search-row">
+                <span style="color:#fff; font-size: 17px;">搜索单价：</span>
+                <Input size="large" v-model="searchUnit" prefix="ios-search" @on-change="handleSearch" placeholder="请输入搜索内容..." style="width: 150px" />
+            </Row>
+            <Row class="search-row">
+                <span style="color:#fff; font-size: 17px;">搜索组织：</span>
+                <Input size="large" v-model="searchOrg" prefix="ios-search" @on-change="handleSearch" placeholder="请输入搜索内容..." style="width: 150px" />
+            </Row>
+            <Row class="search-row">
+                <span style="color:#fff; font-size: 17px;">搜索名字：</span>
+                <Input size="large" v-model="searchName" prefix="ios-search" @on-change="handleSearch" placeholder="请输入搜索内容..." style="width: 150px" />
+            </Row>
+        </div>
     	<div class="table-wraper">
 				<Table 
-				border ref="selection" 
+				border ref="selection" @on-sort-change="changeSort" 
 				no-data-text="暂无数据" :row-class-name="rowClassName"
-				:columns="columns7" :data="nowData" highlight-row>
+				:columns="columns" :data="nowData" highlight-row>
 				 </Table>
 			 </div>
 			 <div class="page-wraper">
@@ -23,41 +40,60 @@
 		            dataCount: 0,//总条数
 		            pageCurrent: 1,//当前
 		            nowData:[],
-		            pageSize:8,
+		            pageSize:6,
 		            data: [],
-                columns7: [
-                    {
-                        title: '姓名',
-                        key: 'name',
-                        render: (h, params) => {
-                            return h('div', [
-                                h('Icon', {
-                                    props: {
-                                        type: 'person'
-                                    }
-                                }),
-                                h('strong', params.row.name)
-                            ]);
-                        }
-                    },
+                data1: [],
+                searchUnit:'',
+                searchOrg:'',
+                searchName:'',
+                columns: [
+                {
+                    title: '姓名',
+                    key: 'name',
+                    align: 'center',
+                    render: (h, params) => {
+                        return h('div', [
+                            h('span', {
+                                style: {
+                                    display: 'inline-block',
+                                    width: '100%',
+                                    overflow: 'hidden',
+                                    textOverflow: 'ellipsis',
+                                    whiteSpace: 'nowrap'
+                                },
+                                domProps: {
+                                    title: params.row.name
+                                }
+                            }, params.row.name)
+                        ])
+                    }
+                },
                     {
                         title: '组织',
-                        key: 'org'
+                        key: 'org',
+                        align:'center',
+                        ellipsis: true,
                     },
                     {
                         title: '单价',
                         key: 'unit_price',
                         sortable: true,
+                        align:'center',
+                        ellipsis: true,
                     },
                     {
                         title: '数量',
                         key: 'amount',
                         sortable: true,
+                        align:'center',
+                        ellipsis: true,
                     },
                     {
                         title: '总价',
                         key: 'total',
-                        sortable: true
+                        sortable: true,
+                        align:'center',
+                        ellipsis: true,
                     },          
                     {
                         title: '操作',
@@ -104,8 +140,8 @@
 			      changepage(index) {
 			        let _start = (index - 1) * this.pageSize;
 			        let _end = index * this.pageSize;
-			        if(_end < this.dataCount) this.nowData = this.data.slice(_start, _end);
-			        else this.nowData = this.data.slice(_start, this.dataCount);
+			        if(_end < this.data1.length) this.nowData = this.data1.slice(_start, _end);
+			        else this.nowData = this.data1.slice(_start, this.data1.length);
 			        this.pageCurrent = index;
 			      },
         		getData() {
@@ -123,9 +159,10 @@
 				          this.data.push(a);
 				        }
 				        this.dataCount = this.data.length;
+                this.data1 = this.data;
         				this.nowData = [];
         				for (let i = 0; i<this.dataCount && i < this.pageSize; i++) {
-				          this.nowData.push(this.data[i]);
+				          this.nowData.push(this.data1[i]);
 				        }
         		},
             show (index) {
@@ -135,7 +172,7 @@
                 })
             },
             remove (index) {
-                this.data.splice(index, 1);
+                this.data1.splice(index, 1);
             },
             rowClassName (row, index) {
 			        if(index%2==0){
@@ -143,6 +180,47 @@
 			        }
 			        else return 'ivu-table-stripe-odd';
 			      },
+            //查询
+            search (data, argumentObj) {
+            let res = data;
+            let dataClone = data;
+            for (let argu in argumentObj) {
+                if (argumentObj[argu].length > 0) {
+                    res = dataClone.filter(d => {    
+                        return d[argu].indexOf(argumentObj[argu]) != -1;
+                    });
+                    dataClone = res;
+                    
+                }
+            }
+            console.log(res);
+            return res;
+            },
+
+             //处理搜索
+            handleSearch () {
+            this.data1 = this.data;
+            this.data1 = this.search(this.data1, {unit_price: this.searchUnit, org:this.searchOrg, name:this.searchName});
+            this.updateList();
+            }, 
+            updateList () {
+              this.nowData = [];
+              for (let i = 0; i<this.data1.length && i < this.pageSize; i++) {
+                this.nowData.push(this.data1[i]);
+              }
+            },
+            backHome() {
+                var arg = {
+                  num:0,
+                  type:true,
+                }
+                this.$store.dispatch('changeShow',arg);
+            }, 
+            changeSort() {
+              if(this.sort === 'DESC') this.sort = 'ASC';
+              else this.sort = 'DESC';
+              // this.data = this.data1;
+            }          
         },
     }
 </script>
@@ -165,16 +243,24 @@
     background-color: $oddColor!important;
   .ivu-table-row-hover td
     background-color: $btnColor!important;
-	.buyModule
-		height:100%;
-	.table-wraper
-		height:90%;
-		// border:1px solid blue; 
-		padding: 10px;
-		// background-color: $tableColor;
-	.page-wraper
-		height:10%;
-		padding-top:10px;
-		padding-left:20px;
-		// border:1px solid red;
+	.buyModule  
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    .search-wraper
+      height:15%;
+      display:flex;
+      justify-content:space-around;
+      align-items:center;
+      // border:1px solid blue;     
+	  .table-wraper
+  		flex-grow:1;
+  		// border:1px solid blue; 
+  		padding: 10px;
+  		// background-color: $tableColor;
+	  .page-wraper
+  		height:10%;    
+  		padding-top:10px;
+  		padding-left:20px;
+  		// border:1px solid red;
 </style>

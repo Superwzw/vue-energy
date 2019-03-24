@@ -39,7 +39,7 @@
 </template>
 
 <script>
-	import sellModule from '@/components/Home_components/homeSwiper/sellModule.vue'
+	import sellModule from '@/components/Home_components/homeSwiper/sellModule.vue'	
 	import rechargeModule from '@/components/Home_components/homeSwiper/rechargeModule'
 	import buyModule from '@/components/Home_components/homeSwiper/buyModule.vue'
 	export default {
