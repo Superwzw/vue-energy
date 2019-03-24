@@ -36,6 +36,7 @@
 </script>
 
 <style lang="stylus" scoped>
+@import '~@/assets/styles/varibles'
 	.nav
 		float:right;
 		width:20%;
@@ -66,7 +67,7 @@
 					align-items:center;
 					height:20%;
 		.bigger:hover 
-			color:rgb(244,208,0);
+			color:$hovColor;
 			// color:black;
 			transform: scale(1.1);
 </style>

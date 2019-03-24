@@ -33,7 +33,7 @@
 		        <Button size="large"type="primary" icon="ios-barcode-outline" style="font-size: 15px;">提交出售</Button>
 		    </div>	
 			<div style="margin-right:140px;float: right;">
-		        <Button size="large"type="primary" icon="ios-arrow-back" style="font-size: 15px;">返回</Button>
+		        <Button size="large"type="primary" icon="ios-arrow-back" style="font-size: 15px;" @click="backHome">返回</Button>
 		    </div>		  
 		</div>
 	</div>
@@ -48,7 +48,13 @@
 			}
 		},
 		methods:{
-
+			backHome() {
+				var arg = {
+					num:0,
+					type:true,
+				}
+				this.$store.dispatch('changeShow',arg);
+			},
 		},
 	}
 </script>

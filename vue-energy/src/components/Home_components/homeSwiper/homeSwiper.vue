@@ -1,10 +1,11 @@
 <template>
 	<div>
 		<div class="place" v-if="!this.$store.state.show">
-			<Card class="fnCard">
+			<div class="fnCard">
 				<sell-module v-if="this.$store.state.num === 1"></sell-module>
+				<buy-module v-if="this.$store.state.num === 2"></buy-module>
 				<recharge-module v-if="this.$store.state.num === 3"></recharge-module>
-			</Card>
+			</div>
 		</div>
 		<div class="homeSwiper" v-if="this.$store.state.show">
 			<div class="card-warper">
@@ -39,12 +40,14 @@
 
 <script>
 	import sellModule from '@/components/Home_components/homeSwiper/sellModule.vue'
-	import rechargeModule from '@/components/Home_components/homeSwiper/rechargeModule.vue'
+	import rechargeModule from '@/components/Home_components/homeSwiper/rechargeModule'
+	import buyModule from '@/components/Home_components/homeSwiper/buyModule.vue'
 	export default {
 		name: "homeSwiper",
 		components:{
 			sellModule,
 			rechargeModule,
+			buyModule,
 		},
 		data: function(){
 			return {
