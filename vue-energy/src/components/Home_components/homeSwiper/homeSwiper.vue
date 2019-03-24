@@ -5,6 +5,7 @@
 				<sell-module v-if="this.$store.state.num === 1"></sell-module>
 				<buy-module v-if="this.$store.state.num === 2"></buy-module>
 				<recharge-module v-if="this.$store.state.num === 3"></recharge-module>
+				<history-module v-if="this.$store.state.num === 4"></history-module>
 			</div>
 		</div>
 		<div class="homeSwiper" v-if="this.$store.state.show">
@@ -42,12 +43,14 @@
 	import sellModule from '@/components/Home_components/homeSwiper/sellModule.vue'	
 	import rechargeModule from '@/components/Home_components/homeSwiper/rechargeModule'
 	import buyModule from '@/components/Home_components/homeSwiper/buyModule.vue'
+	import historyModule from '@/components/Home_components/homeSwiper/historyModule.vue'
 	export default {
 		name: "homeSwiper",
 		components:{
 			sellModule,
 			rechargeModule,
 			buyModule,
+			historyModule,
 		},
 		data: function(){
 			return {
