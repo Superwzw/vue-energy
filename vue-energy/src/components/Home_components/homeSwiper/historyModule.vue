@@ -4,13 +4,13 @@
             <div style="margin-right:10px;">
               <Button size="large"type="primary" icon="ios-arrow-back" style="font-size: 15px;" @click="backHome">返回</Button>
             </div>
-            <Row class="search-row">
+<!--             <Row class="search-row">
                 <span style="color:#fff; font-size: 17px;margin-left: 25px;">搜索：</span>
                 <Input size="large" v-model="searchContent" prefix="ios-search" @on-change="handleSearch" placeholder="请输入搜索内容..." style="width: 150px" />
-            </Row>
+            </Row> -->
             <Row class="search-row">
                 <span style="color:#fff; font-size: 17px;margin-left: 35px;">记录类型：</span>
-                <Select size="large" v-model="history" style="width:130px;" @on-change="changSort">
+                <Select size="large" v-model="history" style="width:130px;">
                   <Option value="order" label="个人订单记录">
                       <span>个人订单记录</span>
                   </Option>
@@ -27,7 +27,10 @@
             </Row>  
             <Row class="search-row" v-if="history==='order' || history==='platform'">
                 <span style="color:#fff; font-size: 17px;margin-left: 5px;">状态：</span>
-                <Select size="large" v-model="status" style="width:100px;" @on-change="changSort">
+                <Select size="large" v-model="status" style="width:100px;" @on-change="changStatus">
+                  <Option value="no" label="无">
+                      <span>无</span>
+                  </Option>                  
                   <Option value="finished" label="已完成">
                       <span>已完成</span>
                   </Option>
@@ -92,10 +95,92 @@
                 data1: [],
                 searchContent:'',
                 history: 'order',
+                val:'no',
                 sort: 'up',
                 isAdmin: true,
-                status:'finished',
+                status:'no',
                 columns: [
+                    {
+                        title: '单价',
+                        key: 'unit_price',
+                        // sortable: true,
+                        align:'center',
+                        ellipsis: true,
+                    },
+                    {
+                        title: '数量',
+                        key: 'amount',
+                        // sortable: true,
+                        align:'center',
+                        ellipsis: true,
+                    },
+                    {
+                        title: '总价',
+                        key: 'total',
+                        // sortable: true,
+                        align:'center',
+                        ellipsis: true,
+                    },
+                {
+                    title: '交易时间',
+                    key: 'time',
+                    align: 'center',
+                    render: (h, params) => {
+                        return h('div', [
+                            h('span', {
+                                style: {
+                                    display: 'inline-block',
+                                    width: '100%',
+                                    overflow: 'hidden',
+                                    textOverflow: 'ellipsis',
+                                    whiteSpace: 'nowrap'
+                                },
+                                domProps: {
+                                    title: params.row.time
+                                }
+                            }, params.row.time)
+                        ])
+                    }
+                },
+                    {
+                        title: '买家',
+                        key: 'buyer',
+                        align:'center',
+                        ellipsis: true,
+                    },
+                    {
+                        title: '订单状态',
+                        key: 'orState',
+                        // sortable: true,
+                        align:'center',
+                        ellipsis: true,
+                    },                
+                    {
+                        title: '操作',
+                        key: 'action',
+                        width: 150,
+                        align: 'center',
+                        render: (h, params) => {
+                            return h('div', [
+                                h('Button', {
+                                    props: {
+                                        type: 'primary',
+                                        size: 'small'
+                                    },
+                                    style: {
+                                        marginRight: '5px'
+                                    },
+                                    on: {
+                                        click: () => {
+                                            this.show(params.index)
+                                        }
+                                    }
+                                }, '查看')
+                            ]);
+                        }
+                    }
+                ],
+                columns1: [
                 {
                     title: '姓名',
                     key: 'name',
@@ -144,9 +229,16 @@
                         align:'center',
                         ellipsis: true,
                     },
-                                                  {
+                    {
                         title: '交易时间',
                         key: 'time',
+                        // sortable: true,
+                        align:'center',
+                        ellipsis: true,
+                    },
+                    {
+                        title: '订单状态',
+                        key: 'orState',
                         // sortable: true,
                         align:'center',
                         ellipsis: true,
@@ -174,28 +266,43 @@
                                 }, '查看'),
                                 h('Button', {
                                     props: {
-                                        type: 'success',
+                                        type: 'error',
                                         size: 'small'
+                                    },
+                                    style: {
+                                        marginRight: '5px'
                                     },
                                     on: {
                                         click: () => {
-                                            this.remove(params.index)
+                                            this.show(params.index)
                                         }
                                     }
-                                }, '购买')
+                                }, '撤销订单'),
                             ]);
                         }
                     }
-                ]
+                ],
             }
         },
         mounted: function () {
         	this.getData();
+          // this.columnsTmp = JSON.parse(JSON.stringify(this.columns));
         },
         methods: {
+            changStatus(value) {
+              if(value === 'finished'){
+                this.data1= JSON.parse(JSON.stringify(this.data));
+                this.data1 = this.data1.filter(item=>item.orState === '已完成'); 
+                this.updateList();   
+              }
+              else if(value === 'unfinished'){
+                this.data1 = JSON.parse(JSON.stringify(this.data));
+                this.data1 = this.data1.filter(item=>item.orState === '未完成'); 
+                this.updateList();                  
+              }
+            },
             changSort(value) {
               if(this.val != 'no'){
-                  // alert('sort!');
                   function compareUp(prop) {
                     return function(a, b){
                       let v1 = a[prop];
@@ -228,12 +335,12 @@
 				        for (let i = 0; i < 100; i++) {
 				          let a = {
 										name: '徐小' + i,
-				            unit_price: 18+i,
-				            org: '中大'+ i,
-				            amount: i,
-				            time: i+1,
-				            address: i,
-				            total: i,
+				            unit_price: ''+i,
+                    buyer:'邬小' + i,
+				            amount: ''-i,
+				            time: '2019-03-25 10:23:'+ i,
+				            orState: i%2 == 0?'已完成':'未完成',
+				            total: ''+ i,
 				          };
 				          this.data.push(a);
 				        }
@@ -260,28 +367,28 @@
 			        else return 'ivu-table-stripe-odd';
 			      },
             //查询
-            search (data, argumentObj) {
-            let res = data;
-            let dataClone = data;
-            for (let argu in argumentObj) {
-                if (argumentObj[argu].length > 0) {
-                    res = dataClone.filter(d => {    
-                        return d[argu].indexOf(argumentObj[argu]) != -1;
-                    });
-                    dataClone = res;
+            // search (data, argumentObj) {
+            // let res = data;
+            // let dataClone = data;
+            // for (let argu in argumentObj) {
+            //     if (argumentObj[argu].length > 0) {
+            //         res = dataClone.filter(d => {    
+            //             return d[argu] === argumentObj[argu];
+            //         });
+            //         dataClone = res;
                     
-                }
-            }
-            console.log(res);
-            return res;
-            },
+            //     }
+            // }
+            // console.log(res);
+            // return res;
+            // },
 
              //处理搜索
-            handleSearch () {
-            this.data1 = this.data;
-            this.data1 = this.search(this.data1, {org:this.searchContent, name:this.searchContent});
-            this.updateList();
-            }, 
+            // handleSearch () {
+            // this.data1 = this.data;
+            // this.data1 = this.search(this.data1, {buyer:this.searchContent});
+            // this.updateList();
+            // }, 
             updateList () {
               this.nowData = [];
               for (let i = 0; i < this.pageSize; i++) {
