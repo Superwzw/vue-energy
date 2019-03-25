@@ -10,7 +10,8 @@
             </Row> -->
             <Row class="search-row">
                 <span style="color:#fff; font-size: 17px;margin-left: 35px;">记录类型：</span>
-                <Select size="large" v-model="history" style="width:130px;">
+                <Select size="large" v-model="history" style="width:130px;"
+                @on-change="changHistory">
                   <Option value="order" label="个人订单记录">
                       <span>个人订单记录</span>
                   </Option>
@@ -27,10 +28,7 @@
             </Row>  
             <Row class="search-row" v-if="history==='order' || history==='platform'">
                 <span style="color:#fff; font-size: 17px;margin-left: 5px;">状态：</span>
-                <Select size="large" v-model="status" style="width:100px;" @on-change="changStatus">
-                  <Option value="no" label="无">
-                      <span>无</span>
-                  </Option>                  
+                <Select size="large" v-model="status" style="width:100px;" @on-change="changStatus">                 
                   <Option value="finished" label="已完成">
                       <span>已完成</span>
                   </Option>
@@ -69,10 +67,30 @@
         </div>
     	<div class="table-wraper">
 				<Table 
-				 ref="selection"
+				 ref="selection" v-show="showType === 1"
 				no-data-text="暂无数据" :row-class-name="rowClassName"
-				:columns="columns" :data="nowData" highlight-row>
+				:columns="columns1" :data="nowData" highlight-row>
 				 </Table>
+        <Table 
+         ref="selection" v-show="showType === 2"
+        no-data-text="暂无数据" :row-class-name="rowClassName"
+        :columns="columns2" :data="nowData" highlight-row>
+         </Table>  
+        <Table 
+         ref="selection" v-show="showType === 3"
+        no-data-text="暂无数据" :row-class-name="rowClassName"
+        :columns="columnsAssets" :data="nowData" highlight-row>
+         </Table>
+        <Table 
+         ref="selection" v-show="showType === 4"
+        no-data-text="暂无数据" :row-class-name="rowClassName"
+        :columns="columnsTx" :data="nowData" highlight-row>
+         </Table> 
+        <Table 
+         ref="selection" v-show="showType === 5"
+        no-data-text="暂无数据" :row-class-name="rowClassName"
+        :columns="columnsUser" :data="nowData" highlight-row>
+         </Table>                           
 			 </div>
 			 <div class="page-wraper">
 				 <Page 
@@ -93,13 +111,15 @@
 		            pageSize:6,
 		            data: [],
                 data1: [],
+                showType:1,
                 searchContent:'',
                 history: 'order',
                 val:'no',
                 sort: 'up',
                 isAdmin: true,
-                status:'no',
-                columns: [
+                status:'finished',
+                nowColumns:[],
+                columns1: [
                     {
                         title: '单价',
                         key: 'unit_price',
@@ -125,6 +145,7 @@
                     title: '交易时间',
                     key: 'time',
                     align: 'center',
+                    ellipsis: true,
                     render: (h, params) => {
                         return h('div', [
                             h('span', {
@@ -150,7 +171,7 @@
                     },
                     {
                         title: '订单状态',
-                        key: 'orState',
+                        key: 'state',
                         // sortable: true,
                         align:'center',
                         ellipsis: true,
@@ -180,34 +201,7 @@
                         }
                     }
                 ],
-                columns1: [
-                {
-                    title: '姓名',
-                    key: 'name',
-                    align: 'center',
-                    render: (h, params) => {
-                        return h('div', [
-                            h('span', {
-                                style: {
-                                    display: 'inline-block',
-                                    width: '100%',
-                                    overflow: 'hidden',
-                                    textOverflow: 'ellipsis',
-                                    whiteSpace: 'nowrap'
-                                },
-                                domProps: {
-                                    title: params.row.name
-                                }
-                            }, params.row.name)
-                        ])
-                    }
-                },
-                    {
-                        title: '组织',
-                        key: 'org',
-                        align:'center',
-                        ellipsis: true,
-                    },
+                  columns2: [
                     {
                         title: '单价',
                         key: 'unit_price',
@@ -229,6 +223,102 @@
                         align:'center',
                         ellipsis: true,
                     },
+                {
+                    title: '交易时间',
+                    key: 'time',
+                    align: 'center',
+                    ellipsis: true,
+                    render: (h, params) => {
+                        return h('div', [
+                            h('span', {
+                                style: {
+                                    display: 'inline-block',
+                                    width: '100%',
+                                    overflow: 'hidden',
+                                    textOverflow: 'ellipsis',
+                                    whiteSpace: 'nowrap'
+                                },
+                                domProps: {
+                                    title: params.row.time
+                                }
+                            }, params.row.time)
+                        ])
+                    }
+                },
+                    {
+                        title: '买家',
+                        key: 'buyer',
+                        align:'center',
+                        ellipsis: true,
+                    },
+                    {
+                        title: '订单状态',
+                        key: 'state',
+                        // sortable: true,
+                        align:'center',
+                        ellipsis: true,
+                    },                
+                    {
+                        title: '操作',
+                        key: 'action',
+                        width: 150,
+                        align: 'center',
+                        render: (h, params) => {
+                            return h('div', [
+                                h('Button', {
+                                    props: {
+                                        type: 'primary',
+                                        size: 'small'
+                                    },
+                                    style: {
+                                        marginRight: '5px'
+                                    },
+                                    on: {
+                                        click: () => {
+                                            this.show(params.index)
+                                        }
+                                    }
+                                }, '查看'),
+                                h('Button', {
+                                    props: {
+                                        type: 'error',
+                                        size: 'small'
+                                    },
+                                    style: {
+                                        marginRight: '5px'
+                                    },
+                                    on: {
+                                        click: () => {
+                                            this.show(params.index)
+                                        }
+                                    }
+                                }, '撤销订单')
+                            ]);
+                        }
+                    }
+                ],                
+                columnsAssets: [
+                    {
+                        title: '原始余额',
+                        key: 'ori_balance',
+                        // sortable: true,
+                        align:'center',
+                        ellipsis: true,
+                    },
+                    {
+                        title: '变更后余额',
+                        key: 'fin_balance',
+                        // sortable: true,
+                        align:'center',
+                        ellipsis: true,
+                    },
+                    {
+                        title: '总价',
+                        key: 'total',
+                        // sortable: true,
+                        align:'center',
+                        ellipsis: true,
+                    },
                     {
                         title: '交易时间',
                         key: 'time',
@@ -236,9 +326,120 @@
                         align:'center',
                         ellipsis: true,
                     },
+                ],
+                columnsTx: [
+                    {
+                        title: '单价',
+                        key: 'unit_price',
+                        // sortable: true,
+                        align:'center',
+                        ellipsis: true,
+                    },
+                    {
+                        title: '数量',
+                        key: 'amount',
+                        // sortable: true,
+                        align:'center',
+                        ellipsis: true,
+                    },
+                    {
+                        title: '总价',
+                        key: 'total',
+                        // sortable: true,
+                        align:'center',
+                        ellipsis: true,
+                    },
+                {
+                    title: '交易时间',
+                    key: 'time',
+                    align: 'center',
+                    ellipsis: true,
+                    render: (h, params) => {
+                        return h('div', [
+                            h('span', {
+                                style: {
+                                    display: 'inline-block',
+                                    width: '100%',
+                                    overflow: 'hidden',
+                                    textOverflow: 'ellipsis',
+                                    whiteSpace: 'nowrap'
+                                },
+                                domProps: {
+                                    title: params.row.time
+                                }
+                            }, params.row.time)
+                        ])
+                    }
+                },
+                    {
+                        title: '买家',
+                        key: 'buyer',
+                        align:'center',
+                        ellipsis: true,
+                    },
+                    {
+                        title: '卖家',
+                        key: 'seller',
+                        align:'center',
+                        ellipsis: true,
+                    },                    
                     {
                         title: '订单状态',
-                        key: 'orState',
+                        key: 'state',
+                        // sortable: true,
+                        align:'center',
+                        ellipsis: true,
+                    },                
+                    {
+                        title: '操作',
+                        key: 'action',
+                        width: 150,
+                        align: 'center',
+                        render: (h, params) => {
+                            return h('div', [
+                                h('Button', {
+                                    props: {
+                                        type: 'primary',
+                                        size: 'small'
+                                    },
+                                    style: {
+                                        marginRight: '5px'
+                                    },
+                                    on: {
+                                        click: () => {
+                                            this.show(params.index)
+                                        }
+                                    }
+                                }, '查看')
+                            ]);
+                        }
+                    }
+                ], 
+                columnsUser: [
+                    {
+                        title: '用户名',
+                        key: 'user_name',
+                        // sortable: true,
+                        align:'center',
+                        ellipsis: true,
+                    },
+                    {
+                        title: 'ID',
+                        key: 'user_id',
+                        // sortable: true,
+                        align:'center',
+                        ellipsis: true,
+                    },
+                    {
+                        title: '组织',
+                        key: 'org',
+                        // sortable: true,
+                        align:'center',
+                        ellipsis: true,
+                    },
+                    {
+                        title: '余额',
+                        key: 'balance',
                         // sortable: true,
                         align:'center',
                         ellipsis: true,
@@ -277,27 +478,51 @@
                                             this.show(params.index)
                                         }
                                     }
-                                }, '撤销订单'),
+                                }, '注销用户')
                             ]);
                         }
-                    }
-                ],
+                    }                    
+                ],                               
             }
         },
         mounted: function () {
-        	this.getData();
-          // this.columnsTmp = JSON.parse(JSON.stringify(this.columns));
+        	this.getOriData();
+          this.changStatus('finished');
         },
         methods: {
+            changHistory(value) {
+              if(value === 'order'){
+                  this.status ='finished';
+                  this.changStatus('finished');
+                  this.showType = 1;
+              }
+              else if(value === 'balance'){
+                this.showType = 3;
+                this.data1 = this.data;
+                this.updateList();
+              }
+              else if(value === 'platform'){
+                this.status ='finished';
+                this.changStatus('finished');
+                this.showType = 4;
+              }
+              else if(value === 'user'){
+                this.showType = 5;
+                this.data1 = this.data;
+                this.updateList();
+              }
+            },
             changStatus(value) {
               if(value === 'finished'){
                 this.data1= JSON.parse(JSON.stringify(this.data));
-                this.data1 = this.data1.filter(item=>item.orState === '已完成'); 
+                this.data1 = this.data1.filter(item=>item.state === '已完成'); 
+                if(this.history === 'order') this.showType = 1;
                 this.updateList();   
               }
               else if(value === 'unfinished'){
                 this.data1 = JSON.parse(JSON.stringify(this.data));
-                this.data1 = this.data1.filter(item=>item.orState === '未完成'); 
+                this.data1 = this.data1.filter(item=>item.state === '未完成'); 
+                if(this.history === 'order') this.showType = 2;
                 this.updateList();                  
               }
             },
@@ -325,36 +550,64 @@
 			      changepage(index) {
 			        let _start = (index - 1) * this.pageSize;
 			        let _end = index * this.pageSize;
-              // console.log(data1.length);
 			        if(_end <= this.data1.length) this.nowData = this.data1.slice(_start, _end);
 			        else this.nowData = this.data1.slice(_start, this.data1.length);
 			        this.pageCurrent = index;
 			      },
-        		getData() {
-        			  this.data = [];
-				        for (let i = 0; i < 100; i++) {
-				          let a = {
-										name: '徐小' + i,
-				            unit_price: ''+i,
-                    buyer:'邬小' + i,
-				            amount: ''-i,
-				            time: '2019-03-25 10:23:'+ i,
-				            orState: i%2 == 0?'已完成':'未完成',
-				            total: ''+ i,
-				          };
-				          this.data.push(a);
-				        }
+        		getOriData() {
+        			  //get origin Data
+          /*<get data start -------------------------------->*/
+                this.data = [];
+                  let a = {
+                    unit_price:'0.5',
+                    amount: '100',
+                    total: '50',
+                    time:'2019-03-25 13:26:24',
+                    buyer:'superxxh',
+                    seller:'superwzw',
+                    state:'已完成',
+                    ori_balance: '200',
+                    fin_balance: '150',
+                    user_name:'superwzw', 
+                    user_id: '15352330',
+                    org: 'SYSU',
+                    balance:'150',
+                  };
+                  let b = {
+                    unit_price:'0.5',
+                    amount: '100',
+                    total: '50',
+                    time:'2019-03-25 13:28:24',
+                    buyer:'superxxh',
+                    seller:'superwzw',
+                    state:'未完成',
+                    user_name:'superxxh',
+                    user_id: '15352360',
+                    org: 'SYSU',
+                    balance:'250',
+                    ori_balance: '200',
+                    fin_balance: '250',
+                  };
+                  for(let i = 0; i < 50; i++) {
+                    this.data.push(a);
+                    this.data.push(b);
+                  }
+          /*<get data end -------------------------------->*/
+
 				        this.dataCount = this.data.length;
                 this.data1 = this.data;
         				this.nowData = [];
-        				for (let i = 0; i < this.pageSize; i++) {
-				          this.nowData.push(this.data1[i]);
-				        }
+                if(this.dataCount >= this.pageSize){
+                  for (let i = 0; i < this.dataCount; i++) {
+                    this.nowData.push(this.data1[i]);
+                  }                 
+                }
+                else this.nowData = this.data1;
         		},
             show (index) {
                 this.$Modal.info({
                     title: 'User Info',
-                    content: `Name：${this.data[index].name}<br>Age：${this.data[index].age}<br>Address：${this.data[index].address}`
+                    content: `Name：${this.data[index].user_name}<br>Balance：${this.data[index].balance}<br>Organization：${this.data[index].org}`
                 })
             },
             remove (index) {
@@ -366,34 +619,14 @@
 			        }
 			        else return 'ivu-table-stripe-odd';
 			      },
-            //查询
-            // search (data, argumentObj) {
-            // let res = data;
-            // let dataClone = data;
-            // for (let argu in argumentObj) {
-            //     if (argumentObj[argu].length > 0) {
-            //         res = dataClone.filter(d => {    
-            //             return d[argu] === argumentObj[argu];
-            //         });
-            //         dataClone = res;
-                    
-            //     }
-            // }
-            // console.log(res);
-            // return res;
-            // },
-
-             //处理搜索
-            // handleSearch () {
-            // this.data1 = this.data;
-            // this.data1 = this.search(this.data1, {buyer:this.searchContent});
-            // this.updateList();
-            // }, 
             updateList () {
               this.nowData = [];
-              for (let i = 0; i < this.pageSize; i++) {
-                this.nowData.push(this.data1[i]);
+              if(this.dataCount >= this.pageSize){
+                  for (let i = 0; i < this.pageSize; i++) {
+                    this.nowData.push(this.data1[i]);
+                  }
               }
+              else this.nowData = this.data1;
             },
             backHome() {
                 var arg = {
@@ -416,7 +649,7 @@
   .ivu-table-header th
       background-color: $tableColor!important;
       color: $hovColor;
-      font-size: 20px;
+      font-size: 18px;
       text-align:center;
   .ivu-table-stripe-even td
     background-color: $evenColor!important;
