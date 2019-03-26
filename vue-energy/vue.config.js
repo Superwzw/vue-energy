@@ -16,15 +16,15 @@ module.exports = {
     port: 8080, // 端口号
     https: false, // https:{type:Boolean}
     open: true, //配置自动启动浏览器
-    proxy: 'http://192.168.142.130:8000' // 配置跨域处理,只有一个代理
+    // proxy: 'http://192.168.142.130:8000' // 配置跨域处理,只有一个代理
  
     // 配置代理
-    // proxy: {
-    //   "/userQuery": {
-    //     target: "http://192.168.142.130:8000",
-    //     changeOrigin: true,
-    //     ws:true,
-    //   },
-    // },
+    proxy: {
+      "/userQuery": {
+        target: "http://192.168.142.130:8000",
+        changeOrigin: true,
+        ws:true,
+      },
+    },
   },
 }
