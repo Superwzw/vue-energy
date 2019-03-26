@@ -4,9 +4,9 @@
 				<div class="iconfont homeIcon">&#xe60c;</div>
 				<div class="iconfont homeIcon">&#xe603;</div>
 				<div class="iconfont homeIcon">&#xe652;</div>
-				<div class="iconfont homeIcon">&#xe613;</div>
+				<div class="iconfont homeIcon"  @click="handleRender">&#xe613;</div>
 			</div>
-			<div class="logo" @click="clickLogo">
+			<div class="logo">
 				<div class="logo-img">
 					<img class="logo-content" src="@/assets/logo.png">
 				</div>
@@ -24,10 +24,18 @@
 <script>
 	export default {
 		name: "homeHeader",
+		data:function(){
+			return {
+				LoginModal:false,
+			}
+		},
 		methods:{
 			clickLogo() {
 				this.$store.dispatch('changeShow', true);
-			}
+			},
+			handleRender() {
+
+			},
 		},
 	}
 </script>

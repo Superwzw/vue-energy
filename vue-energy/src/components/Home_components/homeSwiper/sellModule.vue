@@ -17,20 +17,21 @@
 				<div style="text-align: center;">
 					<div style="display: flex;">
 				        <h2 style="margin-right: 10px;">电量:</h2>
-				        <Input size="large" prefix="ios-basket" placeholder="请输入电量,如： 100" clearable style="width: 400px;" />
+				        <Input size="large" prefix="ios-basket" placeholder="请输入电量,如： 100" clearable style="width: 400px;" v-model="quantity" value="quantity"/>
 				    </div>
 					<div style="display: flex;margin-top: 20px;">
 				        <h2 style="margin-right: 10px;">单价:</h2>
-				        <Input size="large" prefix="logo-yen" placeholder="请输入单价,如：  0.5" clearable style="width: 400px;" />
+				        <Input size="large" prefix="logo-yen" placeholder="请输入单价,如：  0.5" clearable style="width: 400px;"
+				        v-model="unitPrice" value="unitPrice" />
 				    </div>
-					<div style="display: flex;margin-top: 20px;">
+<!-- 					<div style="display: flex;margin-top: 20px;">
 				        <h2 style="margin-right: 10px;">密码:</h2>
 				        <Input type="password"size="large" prefix="ios-key" placeholder="请输入支付密码" clearable style="width: 400px;" />
-				    </div>						
+				    </div> -->						
 	      		</div>
 			</Card>
 			<div style="margin-right:140px;float: right;">
-		        <Button size="large"type="primary" icon="ios-barcode-outline" style="font-size: 15px;">提交出售</Button>
+		        <Button size="large"type="primary" icon="ios-barcode-outline" style="font-size: 15px;" @click="sellConfirm">提交出售</Button>
 		    </div>	
 			<div style="margin-right:140px;float: right;">
 		        <Button size="large"type="primary" icon="ios-arrow-back" style="font-size: 15px;" @click="backHome">返回</Button>
@@ -40,20 +41,40 @@
 </template>
 
 <script>
+import dataUnit from '@/libs/dataUnit.js'
+
 	export default {
 		name: "sellModule",
 		data: function(){
 			return {
-			
+				quantity:'',
+				unitPrice:'',
+			}
+		},
+		mounted() {
+			//加载用户的基本信息
+		},
+		computed: {
+			total: function(){
+				let qua = parseInt(this.quantity);
+				let unit = parseInt(this.unitPrice);
+				let t = (qua*unit).toString();
+				return t;
 			}
 		},
 		methods:{
+			//返回按钮
 			backHome() {
 				var arg = {
 					num:0,
 					type:true,
 				}
 				this.$store.dispatch('changeShow',arg);
+			},
+			//提交出售按钮
+			sellConfirm() {
+				// alert(this.quantity + this.unitPrice);
+				dataUnit.publishOrder(this.quantity, this.unitPrice, this.total);
 			},
 		},
 	}

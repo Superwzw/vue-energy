@@ -12,12 +12,30 @@
 // import homeHeader from '@/components/Home_components/header/header.vue'
 // import homeNav from '@/components/Home_components/homeNav/homeNav.vue'
 import homeBoard from '@/components/Home_components/homeBoard/homeBoard.vue'
+import util from '@/libs/util.js'
 // import homeFooter from '@/components/Home_components/homeFooter/homeFooter.vue'
 export default {
   name: 'home',
+
   components: {
     homeBoard,
-  }
+  },
+
+  data: function() {
+    return {
+      homeData: [],      
+    }
+  },
+
+  mounted() {
+    this.getHomeInfo();
+  },
+  
+  methods: {
+    getHomeInfo() {
+      
+    },
+  },
 }
 </script>
 
